@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    首页
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/index.css') }}">
+{% endblock %}
+
+{% block main %}
+    <ul>
+        {% for item in items %}
+            <li>
+                <div class="pic-group">
+                    <img src="{{ url_for('static',filename='images/TJU.jpg') }}" alt="TJU" class="pic">
+                </div>
+                <div class="item-group">
+                    <p class="item-name"><a href="{{ url_for('detail',itemid=item.id) }}">{{ item.name }}</a>
+                    </p>
+                    <p class="item_description">{{ item.description }}
+                    </p>
+                    <p class="item_price">时限：{{ item.price }}
+                    </p>
+                    <div class="item-info">
+                        <span class="item-owner">{{ item.owner.username }}</span>
+                        <span class="item-time">{{ item.create_time }}</span>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

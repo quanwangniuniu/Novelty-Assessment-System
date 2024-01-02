@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    课题分析
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/analysis.css') }}">
+{% endblock %}
+
+{% block main %}
+    <h1>课题重复度分析</h1>
+    <form method="POST" action="{{ url_for('analysis') }}">
+      <label for="itemOne">课题 1:</label>
+      <input type="text" id="itemOne" name="itemOne" required>
+      <br>
+      <label for="itemTwo">课题 2:</label>
+      <input type="text" id="itemTwo" name="itemTwo" required>
+      <br>
+      <input type="submit" value="计算">
+    </form>
+    {% if coss or jacc or tf or ed or sm %}
+        <div class="answerContainer">
+          <div class="Header">
+           <h2>论题《{{itemOne}}》和《{{itemTwo}}》的相似分析结果为</h2>
+          </div>
+          <div class="information">
+                <p>余弦相似度为:{{coss}}</p>
+                <p>Jaccard相似度为:{{jacc}}</p>
+                <p>TF-IDF相似度为:{{tf}}</p>
+                <p>SimHash相似度为:{{sm}}</p>
+               <div class="section">
+                <h2>余弦相似度</h2>
+                <p>余弦相似度为: {{coss}}</p>
+                <p class="describe">余弦相似度是一种常用的文本相似度度量方法。它通过计算两个文本向量的夹角余弦值来确定它们的相似度。</p>
+
+                <div class="score {{cos_class}}">
+                  <span>得分：</span>
+                  <span>{{cos_score}}分</span>
+                </div>
+              </div>
+              <div class="section">
+                <h2>Jaccard相似度</h2>
+                <p>Jaccard相似度为: {{jacc}}</p>
+                <p class="describe">Jaccard相似度是一种常用的文本相似度度量方法。它通过计算两个文本的交集与并集的比值来确定它们的相似度。</p>
+
+                <div class="score {{jacc_class}}">
+                  <span>得分：</span>
+                  <span>{{jacc_score}}分</span>
+                </div>
+              </div>
+              <div class="section">
+                <h2>TF-IDF相似度</h2>
+                <p>TF-IDF相似度为: {{tf}}</p>
+                <p class="describe">TF-IDF相似度是一种基于词频和文档频率的文本相似度度量方法。它考虑了文本中单词的重要性和普遍性。</p>
+
+                <div class="score {{tf_class}}">
+                  <span>得分：</span>
+                  <span>{{tf_score}}分</span>
+                </div>
+              </div>
+              <div class="section">
+                 <h2>SimHash相似度</h2>
+                  <p>SimHash相似度为: {{sm}}</p>
+                <p class="describe">SimHash相似度是一种基于局部敏感哈希算法的文本相似度度量方法。它通过将文本映射为一个二进制向量来确定它们的相似度。</p>
+
+                <div class="score {{sm_class}}">
+                  <span>得分：</span>
+                  <span>{{sm_score}}分</span>
+                </div>
+              </div>
+              <div class="section">
+              <h2>总体评价</h2>
+              <p>综合以上四种相似度度量方法，对文本相似度进行综合评价。</p>
+
+              <div class="score {{overall_class}}">
+              <span>得分：</span>
+               <span>{{overall_score}}分</span>
+            </div>
+  </div>
+          </div>
+        </div>
+    {% endif %}
+{% endblock %}

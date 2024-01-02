@@ -1,0 +1,8 @@
+.useritem:hover{
+    text-decoration: none;
+}
+
+.useritem{
+    font-size: 16px;
+    font-weight: 900;
+}

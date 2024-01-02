@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}-毕业设计课题发布平台</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static',filename='js/particles.min.js') }}"></script>
+{#    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }} " media="screen">#}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/base.css') }}">
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('index') }}">
+                    <img class="logo" src="{{ url_for('static',filename='images/TJU.jpg') }}" alt="江苏师范大学">
+                </a>
+            </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="{{ url_for('index') }}">首页 <span class="sr-only">(current)</span></a></li>
+                  {% if root_user==False %}
+                      <li><a href="{{ url_for('release') }}">发布您的课题</a></li>
+                  {% else %}
+                      <li><a href="#">发布您的课题</a></li>
+
+                  {% endif %}
+
+                  {% if root_user==False %}
+                      <li><a href="{{ url_for('analysis') }}">课题相似度分析</a></li>
+                  {% else %}
+                      <li><a href="#">课题相似度分析</a></li>
+                  {% endif %}
+              </ul>
+              <form class="navbar-form navbar-left" method="get" action="{{ url_for('search') }}">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="请输入课题名" name="q">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+              </form>
+              <ul class="nav navbar-nav navbar-right">
+                  {% if user %}
+                      {% if root_user==False %}
+                          <li><a href="{{ url_for('usercenter',target='items') }}">{{ user }}</a></li>
+                      {% else %}
+                          <li><a href="#">{{ user }}</a></li>
+                      {% endif %}
+                      <li><a href='{{ url_for('logout') }}'>注销</a></li>
+                  {% else %}
+                       <li><a href="{{ url_for('login') }}">登录</a></li>
+                      <li><a href="{{ url_for('regist') }}">注册</a></li>
+                  {% endif %}
+              </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="main">
+        {% block main %}
+        
+        {% endblock %}
+    </div>
+    <div id="particles-js"></div>
+    <style type="text/css">
+        #particles-js{
+            z-index: -1;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background: #eeeeee ;
+        }
+    </style>
+    <script src="{{ url_for('static',filename='js/app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+.logo{
+    height: 30px;
+}
+
+body{
+    background-color: #eeeeee;
+}
+
+.main{
+    background-color: rgba(255,255,255,0.30);
+    width: 730px;
+    overflow: hidden;
+    margin: 30px auto;
+    padding: 10px;
+}
+
+.login-title{
+    text-align: center;
+}

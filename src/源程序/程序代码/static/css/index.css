@@ -1,0 +1,47 @@
+
+ul{
+    list-style: none;
+    padding-left: 0px;
+}
+
+ul li{
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+}
+
+.pic-group{
+    width: 38px;
+    height: 100%;
+    float: left;
+}
+
+.pic-group .pic{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+}
+
+.item-group{
+    float: left;
+    width: 660px;
+    margin-left: 10px;
+}
+
+.item-name a{
+    color: #111111;
+    font-weight: 900;
+    font-size: 16px;
+}
+
+.item-name a:hover{
+    color: blue;
+    text-decoration: none;
+}
+
+.item-info{
+    text-align: right;
+}
+
+.item-info .item-owner{
+    margin-right: 10px;
+}

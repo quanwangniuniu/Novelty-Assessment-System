@@ -1,0 +1,153 @@
+body {
+        background-color: #f5f5f5;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        color: #333;
+}
+
+h1 {
+        margin-top: 50px;
+        text-align: center;
+        font-size: 32px;
+        font-weight: bold;
+}
+
+form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 30px;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+        display: block;
+        margin-bottom: 10px;
+        font-size: 18px;
+        font-weight: bold;
+}
+
+input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: none;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+input[type="submit"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        border-radius: 5px;
+        border: none;
+        color: #fff;
+        background-color: #5cb85c;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+}
+
+input[type="submit"]:hover {
+        background-color: #4cae4c;
+}
+
+input[type="submit"]:focus {
+        outline: none;
+}
+
+
+.answerContainer {
+  margin: 10px;margin-top: 20rem;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.Header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.information {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.information p {
+  margin: 5px 0;
+  color: #666;
+}
+
+.information p:first-child {
+  margin-top: 0;
+}
+
+.information p span {
+  font-weight: bold;
+  color: #333;
+}
+
+.main{
+    background-color: rgba(255,255,255,0.30);
+    width: 730px;
+    height:3000px;
+    overflow: hidden;
+    margin: 30px auto;
+    padding: 10px;
+}
+
+h1{
+      text-align: center;
+}
+.section {
+      margin-bottom: 30px;
+}
+.section h2 {
+      font-size: 25px;
+      color:blue;
+      margin-bottom: 10px;
+}
+.section p {
+      margin-bottom: 5px;
+}
+.score {
+      font-size: 24px;
+      font-weight: bold;
+      color: #008000;
+      margin-bottom: 20px;
+}
+.excellent {
+      color: #008000;
+}
+.good {
+      color: #FFA500;
+}
+.fair {
+      color: #FF4500;
+}
+.poor {
+      color: #FF0000;
+}
+
+.describe {
+  color: red;
+  font-size: 11px;
+  font-family: "Arial Narrow", sans-serif;
+  font-weight: bold;
+  opacity: 0.8;
+}

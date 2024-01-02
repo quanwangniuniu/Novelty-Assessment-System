@@ -1,0 +1,11 @@
+程序代码目录是一个典型的python项目目录结构
+templates文件夹包含了所有的html文件
+static文件夹包含了所有的css、javascript以及资源文件
+migrations文件夹包含了使用flask_migration插件做ORM映射迁移的历史信息
+主目录下一共有6个python文件：
+config,py是项目配置文件，定义了连接数据库的URL、session生存周期等
+decorators.py是装饰器文件，定义了项目中用于根据用户登录状态返回不同页面
+extensions.py文件包含了flask_sqlalchemy对象
+manage.py文件包含了用于ORM映射的对象
+models.py文件包含了所有项目中的数据表对应的类的定义
+main.py文件是主程序入口文件，定义了所有视图函数。

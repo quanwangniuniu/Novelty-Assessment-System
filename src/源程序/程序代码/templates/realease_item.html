@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    发布课题
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/release.css') }}">
+{% endblock %}
+
+{% block main %}
+    <h3 class="login-title">发布课题</h3>
+    <form action="" method="post" enctype=multipart/form-data>
+        <div class="form-container">
+            <div class="form-group">
+                <input type="text" placeholder="请输入课题名称" name="item_name" class="form-control">
+            </div>
+            <div class="form-group">
+                <textarea name="item_description" class="form-control" rows="10" placeholder="请输入对课题的详细描述"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="text" placeholder="请输入课题预算的课时" name="item_price" class="form-control">
+            </div>
+            <div class="form-group">
+                <p style="text-align: left"><b>选择课题相关图片:</b></p>
+                <input type="file" id="exampleInputFile" name="file" >
+                <p class="help-block" style="text-align: left">图片格式仅限jpg,png,bmp,gif.</p>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary">发布</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

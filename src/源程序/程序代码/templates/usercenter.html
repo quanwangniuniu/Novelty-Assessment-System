@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    个人中心
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/usercenter.css') }}">
+{% endblock %}
+
+{% block main %}
+    <h3 style="text-align: center">用户个人中心</h3>
+    <ul class="nav nav-tabs">
+        {% if flag==1 %}
+            <li role="presentation" class="active"><a href="{{ url_for('usercenter',target='items') }}">您发布的课题</a></li>
+            <li role="presentation"><a href="{{ url_for('usercenter',target='profile') }}">个人资料</a></li>
+            <li role="presentation"><a href="{{ url_for('usercenter',target='profile_edit') }}">修改个人资料</a></li>
+
+        {% elif flag==2 %}
+            <li role="presentation"><a href="{{ url_for('usercenter',target='items') }}">您发布的课题</a></li>
+            <li role="presentation" class="active"><a href="{{ url_for('usercenter',target='profile') }}">个人资料</a></li>
+            <li role="presentation"><a href="{{ url_for('usercenter',target='profile_edit') }}">修改个人资料</a></li>
+        {% elif flag==3 %}
+            <li role="presentation"><a href="{{ url_for('usercenter',target='items') }}">您发布的课题</a></li>
+            <li role="presentation"><a href="{{ url_for('usercenter',target='profile') }}">个人资料</a></li>
+            <li role="presentation" class="active"><a href="{{ url_for('usercenter',target='profile_edit') }}">修改个人资料</a></li>
+        {% endif %}
+
+    </ul>
+    {% if type=='item'%}
+        <p style="margin-left: 20px;margin-top: 20px"><b>您一共发布了{{ items|length }}个课题：</b></p>
+        <ul style="margin-top: 20px ">
+           {% for item in items %}
+                <li><a href="{{ url_for('detail',itemid=item.id) }}" class="useritem">{{ item.name }}</a></li>
+                <ul style="margin-bottom: 15px;margin-top: 10px">
+                    <li>
+                        评论: <span class="badge">{{ item.comments|length }}</span>
+                    </li>
+                {% if item.isclosed==0 %}
+                    <div class="alert alert-success" role="alert" style="margin-top: 10px">课题挂起状态：开放</div>
+                    <a href="{{ url_for('closeitem',itemid=item.id) }}" class="btn btn-danger" role="button">点击将课题挂起</a>
+                {% else %}
+                    <div class="alert alert-warning" role="alert" style="margin-top: 10px">课题挂起状态：关闭</div>
+                    <a href="{{ url_for('openitem',itemid=item.id) }}" class="btn btn-danger" role="button">点击关闭课题挂起</a>
+                {% endif %}
+                    <a href="{{ url_for('deleteitem',itemid=item.id) }}" class="btn btn-warning" role="button">点击撤销课题发布</a>
+                </ul>
+           {% endfor %}
+        </ul>
+    {% elif type=='profile' %}
+        <p></p>
+        <div style="margin-top: 40px">
+            <p><b>您的用户名：</b>{{ user_.username }}</p>
+            <p><b>您的邮箱地址:</b>{{ user_.email }}</p>
+        </div>
+        <hr>
+        <p><b>您感兴趣的课题有：</b></p>
+        <ul>
+         {% for item in  interested_items%}
+            <li><a href="{{ url_for('detail',itemid=item.id) }}">{{ item.name }}</a></li>
+         {% endfor %}
+        </ul>
+    {% elif type=='profile_edit' %}
+        <h3>修改您的个人资料</h3>
+        <hr>
+        <form class="form-horizontal" method="post" action="{{ url_for('edit_profile') }}">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">新的邮箱地址</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="new_email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">新的密码</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="new_password1">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">确认密码</label>
+            <div class="col-sm-10">
+              <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="new_password2">
+            </div>
+          </div>
+            {% if password_wrong %}
+                <p style="color: red;"><b>密码不一致！</b></p>
+            {% endif %}
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10" style="text-align: right">
+              <button type="submit" class="btn btn-default">提交</button>
+            </div>
+          </div>
+        </form>
+    {% endif %}
+{% endblock %}
